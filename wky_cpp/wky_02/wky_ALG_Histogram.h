@@ -13,7 +13,6 @@ void wkyLogTransform(BYTE* pGryImg, int width, int height);
 void wkyHistogramEqualizePixel(BYTE* pGryImg, int width, int height, int N, int M, BYTE* pResImg);
 //
 //14Bit直方图均衡化
-int wkyRead14BitImgFile(short int* p14Img, int width, int height, char* fileName);
 void wkyHistogramEqualize(short int* pGry14BitImg, int width, int height, BYTE* pResImg);
 
 #endif

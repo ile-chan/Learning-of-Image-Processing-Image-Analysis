@@ -1,4 +1,5 @@
 #include"wky_ALG_Histogram.h"
+#include<math.h>
 //直方图及其计算
 void wkyGetHistogram(BYTE* pGryImg, int width, int height, int* histogram) {
 	BYTE* pCur = pGryImg, * pEnd = pGryImg + width * height;
@@ -35,17 +36,47 @@ void wkyHistogramEqualize(BYTE* pGryImg, int width, int height) {
 	int histogram[256], LUT[256];
 	int g = 0;
 	int A = 0;
+	BYTE* pCur = pGryImg, * pEnd = pGryImg + width * height;
 	wkyGetHistogram(pGryImg, width, height, histogram);
 	for (; g < 256; g++) {
-		
+		A += histogram[g];
+		LUT[g] = 255 * A / (width * height);
 	}
-
+	for (; pCur < pEnd; pCur++) {
+		*pCur = LUT[*pCur];
+	}
+	return;
 }
 //对数变换
-void wkyLogTransform(BYTE* pGryImg, int width, int height);
+void wkyLogTransform(BYTE* pGryImg, int width, int height) {
+	BYTE* pCur, * pEnd = pGryImg + width * height;
+	int histogram[256], LUT[256], gmax = 255, g = 0;
+	double c;
+	wkyGetHistogram(pGryImg, width, height, histogram);
+	for (; histogram[gmax] == 0; gmax++);
+	c = 255.0 / log(1 + gmax);
+	for (; g < 256; g++)
+	{
+		LUT[g] = (int)(c * log(1 + g));
+	}
+	for (pCur = pGryImg; pCur < pEnd;) *(pCur++) = LUT[*pCur];
+	return;
+}
 //逐点直方图均衡化
 void wkyHistogramEqualizePixel(BYTE* pGryImg, int width, int height, int N, int M, BYTE* pResImg);
 //
 //14Bit直方图均衡化
-int wkyRead14BitImgFile(short int* p14Img, int width, int height, char* fileName);
-void wkyHistogramEqualize(short int* pGry14BitImg, int width, int height, BYTE* pResImg);
+void wkyHistogramEqualize(short int* pGry14BitImg, int width, int height, BYTE* pResImg) {
+	int histogram[1 << 14], LUT[1 << 14];
+	int A = 0, i = 0, g = 0;
+	memset(histogram, 0, sizeof(int) * (1 << 14));
+	for (i = 0; i < width * height; i++) histogram[*(pGry14BitImg + i)]++;
+	for (g = 0; g < (1 << 14); g++){
+		A += histogram[g];
+		LUT[g] = 255 * A / (width * height);
+	}
+	for (i = 0; i < width * height; i++){
+		pResImg[i] = LUT[*(pGry14BitImg + i)];
+	}
+	return;
+}

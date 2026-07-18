@@ -569,3 +569,14 @@ BYTE *Rmw_ReadBmpFile2Img(const char *filename, int *width, int *height, bool *i
 	//step.5-----------------返回图像数据-------------------//
 	return NULL;
 }
+//14bit，不是真正的BMP图像，只是原始数据，因此无需检查文件头和信息头
+int RmwRead14BitImgFile(short int* p14Img, int width, int height, char* fileName)
+{
+	FILE* fp;
+
+	fp = fopen(fileName, "rb");
+	if (!fp) return 1;
+	fread(p14Img, sizeof(short int), width * height, fp);
+	fclose(fp);
+	return 0;
+}
