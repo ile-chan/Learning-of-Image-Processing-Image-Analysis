@@ -9,11 +9,38 @@ void wkyGetHistogram(BYTE* pGryImg, int width, int height, int* histogram) {
 	return;
 }
 void wkyMinMaxGry(int* histogram, int* minGry, int* maxGry) {
+	int g = 0;
+	for (; histogram[g] == 0; g++);
+	*minGry = g;
+	for (g = 255; histogram[g] == 0; g--);
+	*maxGry = g;
+	return;
+}
+void wkyBrightContrast(int* histogram, double* bright, double* contrast) {
+	int g = 0, count = 0;
+	double sum = 0, fsum = 0;
+	for (; g < 256; g++) {
+		sum += g * histogram[g];
+		count += histogram[g];
+	}
+	*bright = sum / count;
+	for (g = 0; g < 256; g++) {
+		fsum = histogram[g] * (histogram[g] - *bright) * (histogram[g] - *bright);
+	}
+	*contrast = fsum / (count - 1);
+	return;
+}
+//直方图均衡化
+void wkyHistogramEqualize(BYTE* pGryImg, int width, int height) {
+	int histogram[256], LUT[256];
+	int g = 0;
+	int A = 0;
+	wkyGetHistogram(pGryImg, width, height, histogram);
+	for (; g < 256; g++) {
+		
+	}
 
 }
-void wkyBrightContrast(int* histogram, double* bright, double* contrast);
-//直方图均衡化
-void wkyHistogramEqualize(BYTE* pGryImg, int width, int height);
 //对数变换
 void wkyLogTransform(BYTE* pGryImg, int width, int height);
 //逐点直方图均衡化
