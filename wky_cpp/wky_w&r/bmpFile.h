@@ -17,5 +17,5 @@ bool Rmw_Write24BitImg2BmpFile(BYTE *pRGBImg,int width,int height,const char *fi
 BYTE *Rmw_ReadBmpFile2Img(const char *filename, int *width, int *height, bool *isRGB);
 
 // 14bit
-int RmwRead14BitImgFile(short int* p14Img, int width, int height, char* fileName);
+int RmwRead14BitImgFile(short int* p14Img, int width, int height,const char* fileName);
 #endif

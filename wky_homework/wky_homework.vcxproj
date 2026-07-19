@@ -20,12 +20,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\wky_cpp\wky_01\wky_ALG_Inverting.cpp" />
+    <ClCompile Include="..\wky_cpp\wky_02\main02.cpp" />
     <ClCompile Include="..\wky_cpp\wky_02\wky_ALG_Histogram.cpp" />
+    <ClCompile Include="..\wky_cpp\wky_02\wky_ALG_LinearStretch.cpp" />
     <ClCompile Include="..\wky_cpp\wky_w&amp;r\bmpFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\wky_cpp\wky_01\wky_ALG_Inverting.h" />
     <ClInclude Include="..\wky_cpp\wky_02\wky_ALG_Histogram.h" />
+    <ClInclude Include="..\wky_cpp\wky_02\wky_ALG_LinearStretch.h" />
     <ClInclude Include="..\wky_cpp\wky_w&amp;r\bmpFile.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -24,6 +24,12 @@
     <ClCompile Include="..\wky_cpp\wky_02\wky_ALG_Histogram.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\wky_cpp\wky_02\main02.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\wky_cpp\wky_02\wky_ALG_LinearStretch.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\wky_cpp\wky_w&amp;r\bmpFile.h">
@@ -33,6 +39,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\wky_cpp\wky_02\wky_ALG_Histogram.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wky_cpp\wky_02\wky_ALG_LinearStretch.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
